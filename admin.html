@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - All Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-blue-700">Admin Dashboard</h1>
+    <a href="index.html" class="text-sm text-blue-600 hover:underline">← Back to Home</a>
+  </header>  <!-- Main Content -->  <main class="p-6 max-w-6xl mx-auto">
+    <!-- Overview Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white p-4 rounded shadow text-center">
+        <p class="text-lg font-semibold">150+</p>
+        <p class="text-sm text-gray-500">Total Customers</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <p class="text-lg font-semibold">80+</p>
+        <p class="text-sm text-gray-500">Service Providers</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <p class="text-lg font-semibold">12</p>
+        <p class="text-sm text-gray-500">Service Categories</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <p class="text-lg font-semibold">24</p>
+        <p class="text-sm text-gray-500">New Orders Today</p>
+      </div>
+    </div><!-- Sections -->
+<div class="grid md:grid-cols-2 gap-6">
+  <!-- Verify Providers -->
+  <section class="bg-white p-4 rounded shadow">
+    <h2 class="text-lg font-semibold mb-3 text-blue-600">Pending Provider Verifications</h2>
+    <ul class="space-y-3">
+      <li class="flex justify-between items-center border p-2 rounded">
+        <span>Rahul Sharma (Electrician)</span>
+        <button class="bg-green-500 text-white px-3 py-1 rounded">Verify</button>
+      </li>
+      <li class="flex justify-between items-center border p-2 rounded">
+        <span>Anjali Verma (Plumber)</span>
+        <button class="bg-green-500 text-white px-3 py-1 rounded">Verify</button>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Notifications -->
+  <section class="bg-white p-4 rounded shadow">
+    <h2 class="text-lg font-semibold mb-3 text-blue-600">Send Notification</h2>
+    <form>
+      <textarea class="w-full p-2 border rounded mb-3" rows="4" placeholder="Type message to broadcast..."></textarea>
+      <button class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
+    </form>
+  </section>
+
+  <!-- Ads Section -->
+  <section class="bg-white p-4 rounded shadow col-span-full">
+    <h2 class="text-lg font-semibold mb-3 text-blue-600">Manage Advertisements</h2>
+    <form class="space-y-3">
+      <input type="text" class="w-full p-2 border rounded" placeholder="Ad Title" />
+      <input type="url" class="w-full p-2 border rounded" placeholder="Ad Link" />
+      <button class="bg-yellow-500 text-white px-4 py-2 rounded">Add Advertisement</button>
+    </form>
+  </section>
+</div>
+
+  </main>
+</body>
+</html>
