@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Provider Dashboard - All Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-blue-700">Service Provider Dashboard</h1>
+    <a href="index.html" class="text-sm text-blue-600 hover:underline">← Back to Home</a>
+  </header>  <!-- Main Content -->  <main class="p-6 max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Assigned Requests -->
+      <section class="bg-white p-4 rounded shadow">
+        <h2 class="text-lg font-semibold text-blue-600 mb-3">Assigned Service Requests</h2>
+        <ul class="space-y-3">
+          <li class="border p-3 rounded">
+            <p><strong>Customer:</strong> Priya Sharma</p>
+            <p><strong>Service:</strong> Plumbing</p>
+            <p><strong>Address:</strong> Banjara Hills, Hyderabad</p>
+            <div class="mt-2 space-x-2">
+              <button class="bg-green-500 text-white px-3 py-1 rounded">Accept</button>
+              <button class="bg-red-500 text-white px-3 py-1 rounded">Reject</button>
+            </div>
+          </li>
+          <li class="border p-3 rounded">
+            <p><strong>Customer:</strong> Suresh Kumar</p>
+            <p><strong>Service:</strong> Electrician</p>
+            <p><strong>Address:</strong> Kukatpally, Hyderabad</p>
+            <div class="mt-2 space-x-2">
+              <button class="bg-green-500 text-white px-3 py-1 rounded">Accept</button>
+              <button class="bg-red-500 text-white px-3 py-1 rounded">Reject</button>
+            </div>
+          </li>
+        </ul>
+      </section><!-- QR Code & Map -->
+  <section class="bg-white p-4 rounded shadow">
+    <h2 class="text-lg font-semibold text-blue-600 mb-3">Location & QR Verification</h2>
+    <div class="mb-4">
+      <p class="text-sm text-gray-700 mb-2">Customer Location (Map Placeholder)</p>
+      <div class="bg-gray-300 h-40 rounded flex items-center justify-center text-sm text-gray-600">Google Map View</div>
+    </div>
+    <div>
+      <p class="text-sm text-gray-700 mb-2">Scan QR Code (Demo)</p>
+      <div class="bg-gray-300 h-32 w-32 rounded flex items-center justify-center text-sm text-gray-600 mx-auto">QR Code</div>
+    </div>
+  </section>
+
+  <!-- Status Update -->
+  <section class="bg-white p-4 rounded shadow md:col-span-2">
+    <h2 class="text-lg font-semibold text-blue-600 mb-3">Update Service Status</h2>
+    <form class="flex flex-col sm:flex-row sm:items-center gap-4">
+      <select class="w-full sm:w-auto p-2 border rounded">
+        <option>Select Booking</option>
+        <option>Priya Sharma (Plumbing)</option>
+        <option>Suresh Kumar (Electrician)</option>
+      </select>
+      <select class="w-full sm:w-auto p-2 border rounded">
+        <option>Status</option>
+        <option>Accepted</option>
+        <option>On the Way</option>
+        <option>Work Started</option>
+        <option>Completed</option>
+      </select>
+      <button class="bg-blue-600 text-white px-4 py-2 rounded">Update</button>
+    </form>
+  </section>
+</div>
+
+  </main>
+</body>
+</html>
