@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Dashboard - All Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-blue-700">Customer Dashboard</h1>
+    <a href="index.html" class="text-sm text-blue-600 hover:underline">← Back to Home</a>
+  </header>  <!-- Main Content -->  <main class="p-6 max-w-5xl mx-auto">
+    <!-- Bookings -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold text-blue-600 mb-4">My Bookings</h2>
+      <div class="grid gap-4">
+        <div class="bg-white p-4 rounded shadow">
+          <p><strong>Service:</strong> Plumbing</p>
+          <p><strong>Provider:</strong> Anjali Verma</p>
+          <p><strong>Status:</strong> On the way</p>
+          <p><strong>Date:</strong> 16 Apr 2025</p>
+          <div class="mt-3 flex items-center gap-3">
+            <div class="bg-gray-300 h-24 w-24 flex items-center justify-center rounded text-gray-600">QR Code</div>
+            <button class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+          </div>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <p><strong>Service:</strong> Electrician</p>
+          <p><strong>Provider:</strong> Rahul Sharma</p>
+          <p><strong>Status:</strong> Completed</p>
+          <p><strong>Date:</strong> 14 Apr 2025</p>
+          <div class="mt-2">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Rate the Service:</label>
+            <textarea rows="2" class="w-full p-2 border rounded mb-2" placeholder="Write your feedback..."></textarea>
+            <button class="bg-green-600 text-white px-4 py-1 rounded">Submit Feedback</button>
+          </div>
+        </div>
+      </div>
+    </section><!-- New Booking Button -->
+<div class="text-center">
+  <a href="order.html" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Book New Service</a>
+</div>
+
+  </main>
+</body>
+</html>
