@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,63 +11,89 @@
   <header class="bg-white shadow p-4 flex justify-between items-center">
     <h1 class="text-xl font-bold text-blue-700">Book a Service</h1>
     <a href="index.html" class="text-sm text-blue-600 hover:underline">← Back to Home</a>
-  </header>  <!-- Booking Form -->  <main class="p-6 max-w-2xl mx-auto">
+  </header>  
+
+  <!-- Booking Form -->
+  <main class="p-6 max-w-2xl mx-auto">
     <form class="bg-white p-6 rounded shadow space-y-4">
-      <h2 class="text-2xl font-semibold text-blue-600 mb-4">Service Booking Form</h2><div>
-    <label class="block mb-1 text-sm font-medium text-gray-700">Full Name</label>
-    <input type="text" class="w-full p-2 border rounded" placeholder="Enter your full name" required />
-  </div>
+      <h2 class="text-2xl font-semibold text-blue-600 mb-4">Service Booking Form</h2>
 
-  <div>
-    <label class="block mb-1 text-sm font-medium text-gray-700">Phone Number</label>
-    <input type="tel" class="w-full p-2 border rounded" placeholder="e.g. 9876543210" required />
-  </div>
+      <!-- Full Name -->
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" class="w-full p-2 border rounded" placeholder="Enter your full name" required />
+      </div>
 
-  <div>
-    <label class="block mb-1 text-sm font-medium text-gray-700">Address</label>
-    <textarea class="w-full p-2 border rounded" rows="2" placeholder="Complete address" required></textarea>
-  </div>
+      <!-- Phone Number -->
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Phone Number</label>
+        <input type="tel" class="w-full p-2 border rounded" placeholder="e.g. 9876543210" required />
+      </div>
 
-  <div>
-    <label class="block mb-1 text-sm font-medium text-gray-700">Category</label>
-    <select class="w-full p-2 border rounded" required>
-      <option value="">Select a category</option>
-      <option value="household">Household Services</option>
-      <option value="professional">Professional Services</option>
-      <option value="daily">Daily Needs</option>
-    </select>
-  </div>
+      <!-- Address -->
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Address</label>
+        <textarea class="w-full p-2 border rounded" rows="2" placeholder="Complete address" required></textarea>
+      </div>
 
-  <div>
-    <label class="block mb-1 text-sm font-medium text-gray-700">Service</label>
-    <input type="text" class="w-full p-2 border rounded" placeholder="e.g. Electrician, Doctor, Groceries..." required />
-  </div>
+      <!-- Category (auto-selected) -->
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Category</label>
+        <select class="w-full p-2 border rounded" id="category" required>
+          <option value="">Select a category</option>
+          <option value="household">Household Services</option>
+          <option value="professional">Professional Services</option>
+          <option value="daily">Daily Needs</option>
+        </select>
+      </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <div>
-      <label class="block mb-1 text-sm font-medium text-gray-700">Preferred Date</label>
-      <input type="date" class="w-full p-2 border rounded" required />
-    </div>
-    <div>
-      <label class="block mb-1 text-sm font-medium text-gray-700">Preferred Time</label>
-      <input type="time" class="w-full p-2 border rounded" required />
-    </div>
-  </div>
+      <!-- Service -->
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Service</label>
+        <input type="text" class="w-full p-2 border rounded" placeholder="e.g. Electrician, Doctor, Groceries..." required />
+      </div>
 
-  <div>
-    <label class="block mb-1 text-sm font-medium text-gray-700">Problem Description (Optional)</label>
-    <textarea class="w-full p-2 border rounded" rows="3" placeholder="Describe the issue (if any)"></textarea>
-  </div>
+      <!-- Preferred Date & Time -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Preferred Date</label>
+          <input type="date" class="w-full p-2 border rounded" required />
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Preferred Time</label>
+          <input type="time" class="w-full p-2 border rounded" required />
+        </div>
+      </div>
 
-  <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Submit Booking</button>
-</form>
+      <!-- Problem Description -->
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Problem Description (Optional)</label>
+        <textarea class="w-full p-2 border rounded" rows="3" placeholder="Describe the issue (if any)"></textarea>
+      </div>
 
-<p class="text-center text-green-600 mt-4 hidden" id="confirmation">Your service has been booked successfully!</p>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Submit Booking</button>
+    </form>
 
-  </main>  <script>
+    <p class="text-center text-green-600 mt-4 hidden" id="confirmation">Your service has been booked successfully!</p>
+
+  </main>
+
+  <script>
+    // Auto-select category based on URL parameter (if available)
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('category');
+    if (categoryParam) {
+      document.getElementById('category').value = categoryParam;
+    }
+
+    // Show confirmation message and redirect after form submission
     document.querySelector('form').addEventListener('submit', function (e) {
       e.preventDefault();
       document.getElementById('confirmation').classList.remove('hidden');
+      setTimeout(function() {
+        window.location.href = "thank_you.html"; // Redirect to thank you page
+      }, 2000); // Wait 2 seconds before redirecting
     });
-  </script></body>
+  </script>
+</body>
 </html>
