@@ -37,43 +37,17 @@
     <div class="container mx-auto text-center">
       <h3 class="text-2xl font-semibold mb-10">Explore Service Categories</h3>
 
-      <!-- Household Services Slider -->
-<div class="relative group mb-8" id="household-slider">
-  <!-- Swiper Slider -->
-  <div class="swiper-container householdSwiper">
-    <div class="swiper-wrapper">
-      <!-- Slide 1 -->
-      <div class="swiper-slide">
-        <img src="household-banner1.jpg" alt="Household Service 1" class="w-full h-40 object-cover">
-      </div>
-      <!-- Slide 2 -->
-      <div class="swiper-slide">
-        <img src="household-banner2.jpg" alt="Household Service 2" class="w-full h-40 object-cover">
-      </div>
-      <!-- Slide 3 -->
-      <div class="swiper-slide">
-        <img src="household-banner3.jpg" alt="Household Service 3" class="w-full h-40 object-cover">
-      </div>
-    </div>
-
-    <!-- Swiper Navigation Buttons -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
-
-  <!-- Overlay Title -->
-  <div class="absolute inset-0 flex items-center justify-center">
-    <h2 class="text-3xl font-bold text-white bg-black bg-opacity-50 px-6 py-3 rounded">Household Services</h2>
-  </div>
-
-  <!-- Clickable Link -->
-  <a href="services.html#household" class="absolute inset-0 z-10"></a>
-</div>
-
+      <!-- Household Services -->
+      <a href="services.html#household" class="block relative group mb-8">
+        <img src="household-banner.jpg" alt="Household Services" class="w-full h-48 object-cover rounded-lg shadow-lg group-hover:opacity-80 transition">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <h2 class="text-3xl font-bold text-white bg-black bg-opacity-50 px-6 py-3 rounded">Household Services</h2>
+        </div>
+      </a>
 
       <!-- Professional Services -->
       <a href="services.html#professional" class="block relative group mb-8">
-        <img src="doctor.png" alt="Professional Services" class="w-full h-40 object-cover rounded-lg shadow-lg group-hover:opacity-80 transition">
+        <img src="doctor.png" alt="Professional Services" class="w-full h-48 object-cover rounded-lg shadow-lg group-hover:opacity-80 transition">
         <div class="absolute inset-0 flex items-center justify-center">
           <h2 class="text-3xl font-bold text-white bg-black bg-opacity-50 px-6 py-3 rounded">Professional Services</h2>
         </div>
@@ -81,7 +55,7 @@
 
       <!-- Organic Fruits & Dairy -->
       <a href="services.html#organic" class="block relative group">
-        <img src="fruits.jpeg" alt="Organic & Dairy" class="w-full h-40 object-cover rounded-lg shadow-lg group-hover:opacity-80 transition">
+        <img src="fruits.jpeg" alt="Organic & Dairy" class="w-full h-48 object-cover rounded-lg shadow-lg">
         <div class="absolute inset-0 flex items-center justify-center">
           <h2 class="text-3xl font-bold text-white bg-black bg-opacity-50 px-6 py-3 rounded">Organic Fruits & Vegetables & Dairy Farm Milk</h2>
         </div>
@@ -99,39 +73,5 @@
       <a href="terms.html" class="hover:text-blue-600">Terms & Privacy</a>
     </div>
   </footer>
-  <script>
-  // Wait for the DOM content to be fully loaded
-  document.addEventListener('DOMContentLoaded', function() {
-    const householdSection = document.getElementById('household-slider');
-
-    if (householdSection) {
-      // Dynamically load Swiper CSS
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css';
-      document.head.appendChild(link);
-
-      // Dynamically load Swiper JS
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
-      script.onload = () => {
-        // Initialize Swiper after it's loaded
-        new Swiper('.householdSwiper', {
-          loop: true,
-          autoplay: {
-            delay: 3000, // Switch slides every 3 seconds
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        });
-      };
-      document.body.appendChild(script);
-    }
-  });
-</script>
-
 </body>
 </html>
-
