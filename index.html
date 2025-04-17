@@ -38,9 +38,9 @@
       <h3 class="text-2xl font-semibold mb-10">Explore Service Categories</h3>
 
       <!-- Household Services Slider -->
-<div class="relative group mb-8">
+<div class="relative group mb-8" id="household-slider">
   <!-- Swiper Slider -->
-  <div class="swiper householdSwiper rounded-lg overflow-hidden">
+  <div class="swiper-container householdSwiper">
     <div class="swiper-wrapper">
       <!-- Slide 1 -->
       <div class="swiper-slide">
@@ -70,6 +70,7 @@
   <a href="services.html#household" class="absolute inset-0 z-10"></a>
 </div>
 
+
       <!-- Professional Services -->
       <a href="services.html#professional" class="block relative group mb-8">
         <img src="doctor.png" alt="Professional Services" class="w-full h-40 object-cover rounded-lg shadow-lg group-hover:opacity-80 transition">
@@ -98,6 +99,39 @@
       <a href="terms.html" class="hover:text-blue-600">Terms & Privacy</a>
     </div>
   </footer>
+  <script>
+  // Wait for the DOM content to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    const householdSection = document.getElementById('household-slider');
+
+    if (householdSection) {
+      // Dynamically load Swiper CSS
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css';
+      document.head.appendChild(link);
+
+      // Dynamically load Swiper JS
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+      script.onload = () => {
+        // Initialize Swiper after it's loaded
+        new Swiper('.householdSwiper', {
+          loop: true,
+          autoplay: {
+            delay: 3000, // Switch slides every 3 seconds
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      };
+      document.body.appendChild(script);
+    }
+  });
+</script>
+
 </body>
 </html>
 
