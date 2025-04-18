@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -6,11 +7,15 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
+
   <!-- Header -->
   <header class="bg-white shadow p-4 flex justify-between items-center">
     <h1 class="text-xl font-bold text-blue-700">Admin Dashboard</h1>
     <a href="index.html" class="text-sm text-blue-600 hover:underline">← Back to Home</a>
-  </header>  <!-- Main Content -->  <main class="p-6 max-w-6xl mx-auto">
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6 max-w-6xl mx-auto">
     <!-- Overview Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
       <div class="bg-white p-4 rounded shadow text-center">
@@ -29,42 +34,91 @@
         <p class="text-lg font-semibold">24</p>
         <p class="text-sm text-gray-500">New Orders Today</p>
       </div>
-    </div><!-- Sections -->
-<div class="grid md:grid-cols-2 gap-6">
-  <!-- Verify Providers -->
-  <section class="bg-white p-4 rounded shadow">
-    <h2 class="text-lg font-semibold mb-3 text-blue-600">Pending Provider Verifications</h2>
-    <ul class="space-y-3">
-      <li class="flex justify-between items-center border p-2 rounded">
-        <span>Rahul Sharma (Electrician)</span>
-        <button class="bg-green-500 text-white px-3 py-1 rounded">Verify</button>
-      </li>
-      <li class="flex justify-between items-center border p-2 rounded">
-        <span>Anjali Verma (Plumber)</span>
-        <button class="bg-green-500 text-white px-3 py-1 rounded">Verify</button>
-      </li>
-    </ul>
-  </section>
+    </div>
 
-  <!-- Notifications -->
-  <section class="bg-white p-4 rounded shadow">
-    <h2 class="text-lg font-semibold mb-3 text-blue-600">Send Notification</h2>
-    <form>
-      <textarea class="w-full p-2 border rounded mb-3" rows="4" placeholder="Type message to broadcast..."></textarea>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
-    </form>
-  </section>
+    <!-- Payment Overview Section -->
+    <section class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white p-4 rounded shadow text-center">
+        <p class="text-lg font-semibold text-green-600">₹1,25,000</p>
+        <p class="text-sm text-gray-500">Total Revenue</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <p class="text-lg font-semibold text-yellow-500">₹15,000</p>
+        <p class="text-sm text-gray-500">Pending Payouts</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <p class="text-lg font-semibold text-blue-600">₹1,10,000</p>
+        <p class="text-sm text-gray-500">Completed Payments</p>
+      </div>
+    </section>
 
-  <!-- Ads Section -->
-  <section class="bg-white p-4 rounded shadow col-span-full">
-    <h2 class="text-lg font-semibold mb-3 text-blue-600">Manage Advertisements</h2>
-    <form class="space-y-3">
-      <input type="text" class="w-full p-2 border rounded" placeholder="Ad Title" />
-      <input type="url" class="w-full p-2 border rounded" placeholder="Ad Link" />
-      <button class="bg-yellow-500 text-white px-4 py-2 rounded">Add Advertisement</button>
-    </form>
-  </section>
-</div>
+    <!-- Sections -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Verify Providers -->
+      <section class="bg-white p-4 rounded shadow">
+        <h2 class="text-lg font-semibold mb-3 text-blue-600">Pending Provider Verifications</h2>
+        <ul class="space-y-3">
+          <li class="flex justify-between items-center border p-2 rounded">
+            <span>Rahul Sharma (Electrician)</span>
+            <button class="bg-green-500 text-white px-3 py-1 rounded">Verify</button>
+          </li>
+          <li class="flex justify-between items-center border p-2 rounded">
+            <span>Anjali Verma (Plumber)</span>
+            <button class="bg-green-500 text-white px-3 py-1 rounded">Verify</button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Notifications -->
+      <section class="bg-white p-4 rounded shadow">
+        <h2 class="text-lg font-semibold mb-3 text-blue-600">Send Notification</h2>
+        <form>
+          <textarea class="w-full p-2 border rounded mb-3" rows="4" placeholder="Type message to broadcast..."></textarea>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
+        </form>
+      </section>
+    </div>
+
+    <!-- Ads Section -->
+    <section class="bg-white p-4 rounded shadow col-span-full mb-8">
+      <h2 class="text-lg font-semibold mb-3 text-blue-600">Manage Advertisements</h2>
+      <form class="space-y-3">
+        <input type="text" class="w-full p-2 border rounded" placeholder="Ad Title" />
+        <input type="url" class="w-full p-2 border rounded" placeholder="Ad Link" />
+        <button class="bg-yellow-500 text-white px-4 py-2 rounded">Add Advertisement</button>
+      </form>
+    </section>
+
+    <!-- Users Table -->
+    <section class="bg-white p-4 rounded shadow mb-8">
+      <h2 class="text-lg font-semibold mb-3 text-blue-600">Registered Users</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="px-4 py-2 text-left">Name</th>
+              <th class="px-4 py-2 text-left">Email</th>
+              <th class="px-4 py-2 text-left">Role</th>
+              <th class="px-4 py-2 text-left">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-4 py-2">Ravi Kumar</td>
+              <td class="px-4 py-2">ravi@example.com</td>
+              <td class="px-4 py-2">Customer</td>
+              <td class="px-4 py-2 text-green-600">Active</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2">Sita Reddy</td>
+              <td class="px-4 py-2">sita@example.com</td>
+              <td class="px-4 py-2">Service Provider</td>
+              <td class="px-4 py-2 text-yellow-500">Pending</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
   </main>
 </body>
