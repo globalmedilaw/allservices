@@ -22,16 +22,7 @@
       <li><a href="orders.html" class="hover:text-blue-600"> My Orders</a></li>
       <li><a href="bookings.html" class="hover:text-blue-600"> Bookings</a></li>
       <li><a href="services.html" class="hover:text-blue-600"> Services</a></li>
-       <li>
-            <a href="javascript:void(0)" class="hover:text-blue-600" id="notification-link">Notifications</a>
-            <div id="notification-section" class="hidden">
-                <ul>
-                    <li>Notification #1 - New service available: Plumber</li>
-                    <li>Notification #2 - Your order has been shipped</li>
-                    <li>Notification #3 - New promotions and discounts!</li>
-                </ul>
-            </div>
-        </li>
+      <li><a href="notification.html" class="hover:text-blue-600">Notifications</a></li>
       <li><a href="settings.html" class="hover:text-blue-600"> Settings</a></li>
       <li><a href="help.html" class="hover:text-blue-600"> Help & Support</a></li>
       <li><a href="logout.html" class="hover:text-blue-600"> Logout</a></li>
@@ -114,12 +105,6 @@
     const sidebar = document.getElementById('left-sidebar');
     const toggle = document.getElementById('sidebar-toggle');
     const closeBtn = document.getElementById('sidebar-close');
-    const notificationLink = document.getElementById('notification-link');
-    const notificationSection = document.getElementById('notification-section');
-
-    notificationLink.addEventListener('click', function () {
-      notificationSection.classList.toggle('hidden');
-    });
     
     toggle.addEventListener('click', function () {
       sidebar.classList.toggle('-translate-x-full');
