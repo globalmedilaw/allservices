@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Bookings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>My Bookings</h1>
-    <p>Manage your service bookings</p>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md py-6 px-4 text-center">
+    <h1 class="text-3xl font-bold text-blue-700">My Bookings</h1>
+    <p class="text-gray-600 text-lg mt-2">Manage your service bookings</p>
   </header>
 
-  <section>
-    <h2>Booking List</h2>
-    <ul>
-      <li>Booking #1 - Service: Plumber - Date: 12/05/2025</li>
-      <li>Booking #2 - Service: Painter - Date: 13/05/2025</li>
-      <li>Booking #3 - Service: Mechanic - Date: 14/05/2025</li>
+  <!-- Booking List -->
+  <section class="max-w-3xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-semibold text-blue-600 mb-6">Booking List</h2>
+
+    <ul class="space-y-4">
+      <li class="bg-blue-50 p-4 rounded-lg shadow-md flex justify-between items-center">
+        <div class="text-lg text-blue-700">Booking #1 - Service: Plumber</div>
+        <span class="text-gray-600 font-semibold">Date: 12/05/2025</span>
+      </li>
+
+      <li class="bg-green-50 p-4 rounded-lg shadow-md flex justify-between items-center">
+        <div class="text-lg text-blue-700">Booking #2 - Service: Painter</div>
+        <span class="text-gray-600 font-semibold">Date: 13/05/2025</span>
+      </li>
+
+      <li class="bg-yellow-50 p-4 rounded-lg shadow-md flex justify-between items-center">
+        <div class="text-lg text-blue-700">Booking #3 - Service: Mechanic</div>
+        <span class="text-gray-600 font-semibold">Date: 14/05/2025</span>
+      </li>
     </ul>
   </section>
+
 </body>
 </html>
