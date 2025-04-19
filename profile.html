@@ -13,8 +13,9 @@
     <!-- Sidebar -->
     <aside class="w-64 bg-white shadow-md p-6">
       <div class="text-center mb-6">
-        <img src="path-to-your-profile.jpg" class="w-16 h-16 rounded-full mx-auto border-2 border-blue-600" />
-        <h2 class="text-xl font-semibold mt-2">Shiney</h2>
+        <img id="profile-pic-img" src="path-to-your-profile.jpg" class="w-16 h-16 rounded-full mx-auto border-2 border-blue-600" />
+        <h2 id="profile-name" class="text-xl font-semibold mt-2 cursor-pointer">Shiney</h2>
+        <input id="profile-pic" type="file" class="hidden" accept="image/*" onchange="previewProfilePic()"/>
       </div>
       <nav class="space-y-3">
         <a href="#" class="block px-3 py-2 rounded hover:bg-blue-100">Dashboard</a>
@@ -35,11 +36,10 @@
 
       <div class="bg-white p-6 rounded-lg shadow">
         <div class="flex items-center space-x-6 mb-6">
-          <img src="pic.jpg" alt="Profile Picture" class="w-20 h-20 rounded-full object-cover border-4 border-blue-500" />
+          <img id="profile-pic-img" src="path-to-your-profile.jpg" alt="Profile Picture" class="w-20 h-20 rounded-full object-cover border-4 border-blue-500 cursor-pointer" onclick="document.getElementById('profile-pic').click()"/>
           <div>
-            <h2 class="text-2xl font-bold text-gray-800">Shiney</h2>
+            <h2 id="profile-name" class="text-2xl font-bold text-gray-800 cursor-pointer" onclick="editName()">Shiney</h2>
             <p class="text-gray-500">shiney@example.com</p>
-            <button class="mt-2 text-sm text-blue-600 hover:underline">Edit Profile Picture</button>
           </div>
         </div>
 
@@ -67,6 +67,28 @@
       </div>
     </main>
   </div>
+
+  <script>
+    // To edit name
+    function editName() {
+      const newName = prompt("Enter your new name:", document.getElementById("profile-name").innerText);
+      if (newName) {
+        document.getElementById("profile-name").innerText = newName;
+      }
+    }
+
+    // To preview and change profile picture
+    function previewProfilePic() {
+      const file = document.getElementById("profile-pic").files[0];
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        document.getElementById("profile-pic-img").src = reader.result;
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
 
 </body>
 </html>
