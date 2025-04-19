@@ -101,16 +101,24 @@
   </footer>
 
   <!-- JavaScript for Sidebar and Menu -->
-  <script>
-    document.getElementById("menu-toggle").addEventListener("click", function () {
-      document.getElementById("menu").classList.toggle("hidden");
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const sidebar = document.getElementById('sidebar');
+    const toggle = document.getElementById('sidebar-toggle');
+    const closeBtn = document.getElementById('sidebar-close');
+
+    toggle.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
     });
-    document.getElementById("sidebar-toggle").addEventListener("click", function () {
-      document.getElementById("left-sidebar").classList.remove("hidden");
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.add('-translate-x-full');
     });
-    document.getElementById("sidebar-close").addEventListener("click", function () {
-      document.getElementById("left-sidebar").classList.add("hidden");
+
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+        sidebar.classList.add('-translate-x-full');
+      }
     });
-  </script>
-</body>
-</html>
+  });
+</script>
