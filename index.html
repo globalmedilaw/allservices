@@ -100,26 +100,23 @@
     </div>
   </footer>
 
-  <!-- JavaScript for Sidebar and Menu -->
-  <script>
-    const sidebar = document.getElementById('left-sidebar');
-    const toggle = document.getElementById('sidebar-toggle');
-    const closeBtn = document.getElementById('sidebar-close');
+ <!-- JavaScript for Sidebar and Menu -->
+<script>
+  const sidebar = document.getElementById('left-sidebar');
+  const toggle = document.getElementById('sidebar-toggle');
+  const closeBtn = document.getElementById('sidebar-close');
 
-    toggle.addEventListener('click', () => {
-      sidebar.classList.toggle('-translate-x-full');  // Toggle the hidden state
-    });
+  toggle.addEventListener('click', () => {
+    sidebar.classList.toggle('-translate-x-full');
+  });
 
-    closeBtn.addEventListener('click', () => {
-      sidebar.classList.add('-translate-x-full');  // Ensure the sidebar closes when clicked
-    });
+  closeBtn.addEventListener('click', () => {
+    sidebar.classList.add('-translate-x-full');
+  });
 
-    // Optional: close sidebar if clicking outside of it
-    document.addEventListener('click', (e) => {
-      if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
-        sidebar.classList.add('-translate-x-full');
-      }
-    });
-  </script>
-</body>
-</html>
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+      sidebar.classList.add('-translate-x-full');
+    }
+  });
+</script>
