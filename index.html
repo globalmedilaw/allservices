@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
   <!-- Sidebar Menu -->
-  <div id="left-sidebar" class="hidden fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 p-6">
+ <div id="left-sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 p-6 transform -translate-x-full">
     <div class="flex items-center justify-between mb-6">
       <div class="flex items-center space-x-2">
         <img src="https://via.placeholder.com/40" class="rounded-full w-10 h-10" alt="Profile">
@@ -101,20 +101,17 @@
   </footer>
 
   <!-- JavaScript for Sidebar and Menu -->
-const sidebar = document.getElementById('left-sidebar'); // Change this line
+
+const sidebar = document.getElementById('left-sidebar');
 const toggle = document.getElementById('sidebar-toggle');
 const closeBtn = document.getElementById('sidebar-close');
 
 toggle.addEventListener('click', () => {
-  if (sidebar.classList.contains('-translate-x-full')) {
-    sidebar.classList.remove('-translate-x-full');
-  } else {
-    sidebar.classList.add('-translate-x-full');
-  }
+  sidebar.classList.toggle('-translate-x-full');  // Toggle the hidden state
 });
 
 closeBtn.addEventListener('click', () => {
-  sidebar.classList.add('-translate-x-full');
+  sidebar.classList.add('-translate-x-full');  // Ensure the sidebar closes when clicked
 });
 
 // Optional: close sidebar if clicking outside of it
