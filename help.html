@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Help & Support</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>Help & Support</h1>
-    <p>Find answers to your questions or contact support</p>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <!-- Header Section -->
+  <header class="bg-white shadow-md py-6 px-4 text-center">
+    <h1 class="text-3xl font-bold text-blue-700">Help & Support</h1>
+    <p class="text-gray-600 text-lg mt-2">Find answers to your questions or contact support</p>
   </header>
 
-  <section>
-    <h2>Frequently Asked Questions</h2>
-    <ul>
+  <!-- Help & Support Section -->
+  <section class="max-w-3xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-semibold text-blue-600 mb-6">Frequently Asked Questions</h2>
+
+    <ul class="list-disc pl-6 text-lg space-y-4">
       <li>How do I book a service?</li>
       <li>How can I update my profile?</li>
       <li>What is the cancellation policy?</li>
     </ul>
 
-    <h2>Contact Support</h2>
-    <p>If you need assistance, please <a href="mailto:support@allservices.com">contact us via email</a>.</p>
+    <h2 class="text-2xl font-semibold text-blue-600 mt-8 mb-4">Contact Support</h2>
+    <p class="text-lg text-gray-700">
+      If you need assistance, please <a href="mailto:support@allservices.com" class="text-blue-600 hover:underline">contact us via email</a>.
+    </p>
   </section>
+
 </body>
 </html>
