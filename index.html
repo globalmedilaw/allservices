@@ -101,27 +101,25 @@
   </footer>
 
   <!-- JavaScript for Sidebar and Menu -->
-<script>
-  const sidebar = document.getElementById('sidebar');
-  const toggle = document.getElementById('sidebar-toggle');
-  const closeBtn = document.getElementById('sidebar-close');
+const sidebar = document.getElementById('left-sidebar'); // Change this line
+const toggle = document.getElementById('sidebar-toggle');
+const closeBtn = document.getElementById('sidebar-close');
 
-  toggle.addEventListener('click', () => {
-    if (sidebar.classList.contains('-translate-x-full')) {
-      sidebar.classList.remove('-translate-x-full');
-    } else {
-      sidebar.classList.add('-translate-x-full');
-    }
-  });
-
-  closeBtn.addEventListener('click', () => {
+toggle.addEventListener('click', () => {
+  if (sidebar.classList.contains('-translate-x-full')) {
+    sidebar.classList.remove('-translate-x-full');
+  } else {
     sidebar.classList.add('-translate-x-full');
-  });
+  }
+});
 
-  // Optional: close sidebar if clicking outside of it
-  document.addEventListener('click', (e) => {
-    if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
-      sidebar.classList.add('-translate-x-full');
-    }
-  });
-</script>
+closeBtn.addEventListener('click', () => {
+  sidebar.classList.add('-translate-x-full');
+});
+
+// Optional: close sidebar if clicking outside of it
+document.addEventListener('click', (e) => {
+  if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+    sidebar.classList.add('-translate-x-full');
+  }
+});
