@@ -7,8 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
+
   <!-- Sidebar Menu -->
- <div id="left-sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 p-6 transform -translate-x-full">
+  <div id="left-sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 p-6 transform -translate-x-full transition duration-300 ease-in-out">
     <div class="flex items-center justify-between mb-6">
       <div class="flex items-center space-x-2">
         <img src="pic.jpg" class="rounded-full w-10 h-10" alt="Profile">
@@ -32,13 +33,25 @@
   <!-- Header -->
   <header class="bg-white shadow-md sticky top-0 z-40">
     <div class="container mx-auto flex justify-between items-center p-4">
-      <button id="sidebar-toggle" class="focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sidebar Toggle -->
+      <button id="sidebar-toggle" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
+
+      <!-- Title -->
       <h1 class="text-xl font-bold text-blue-600">All Services at One Place</h1>
-      <nav id="menu" class="hidden md:flex md:space-x-4 flex-col md:flex-row absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent mt-2 md:mt-0 shadow-md md:shadow-none z-40">
+
+      <!-- Menu Toggle -->
+      <button id="menu-toggle" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <!-- Navigation Menu -->
+      <nav id="menu" class="hidden md:flex md:space-x-4 absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent mt-2 md:mt-0 shadow-md md:shadow-none z-40 flex-col md:flex-row">
         <a href="index.html" class="block px-4 py-2 text-sm hover:text-blue-600">Home</a>
         <a href="services.html" class="block px-4 py-2 text-sm hover:text-blue-600">Services</a>
         <a href="about.html" class="block px-4 py-2 text-sm hover:text-blue-600">About</a>
@@ -100,24 +113,34 @@
     </div>
   </footer>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const sidebar = document.getElementById('left-sidebar');
-    const toggle = document.getElementById('sidebar-toggle');
-    const closeBtn = document.getElementById('sidebar-close');
-    
-    toggle.addEventListener('click', function () {
-      sidebar.classList.toggle('-translate-x-full');
-    });
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sidebar = document.getElementById('left-sidebar');
+      const toggle = document.getElementById('sidebar-toggle');
+      const closeBtn = document.getElementById('sidebar-close');
+      const menuToggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('menu');
 
-    closeBtn.addEventListener('click', function () {
-      sidebar.classList.add('-translate-x-full');
-    });
+      toggle.addEventListener('click', function () {
+        sidebar.classList.toggle('-translate-x-full');
+      });
 
-    document.addEventListener('click', function (e) {
-      if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+      closeBtn.addEventListener('click', function () {
         sidebar.classList.add('-translate-x-full');
-      }
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+          sidebar.classList.add('-translate-x-full');
+        }
+      });
+
+      menuToggle.addEventListener('click', function () {
+        menu.classList.toggle('hidden');
+      });
     });
-  });
-</script>
+  </script>
+
+</body>
+</html>
