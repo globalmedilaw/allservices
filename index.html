@@ -5,58 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>All Services at One Place</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Custom Animation */
-    .slide-in {
-      transition: transform 0.3s ease-in-out;
-    }
-    .fade-in {
-      animation: fadeIn 0.8s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
     body {
       font-family: 'Poppins', sans-serif;
     }
-    /* Custom Colors */
-    :root {
-      --primary-color: #4C8BF5; /* Blue */
-      --secondary-color: #34D399; /* Green */
-      --accent-color: #F59E0B; /* Yellow */
-      --background-color: #F9FAFB; /* Light Gray */
-      --text-color: #1F2937; /* Dark Gray */
-      --hover-color: #3B82F6; /* Dark Blue */
+
+    /* Sidebar Animation */
+    #left-sidebar {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Custom fade-in animation */
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
     }
   </style>
 </head>
-<body class="bg-background-color text-text-color">
+<body class="bg-gray-100 text-gray-800">
 
   <!-- Sidebar Menu -->
-  <div id="left-sidebar" class="fixed top-0 left-0 h-full w-64 bg-primary-color text-white shadow-lg z-50 p-6 transform -translate-x-full slide-in">
+  <div id="left-sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 p-6 transform -translate-x-full md:translate-x-0">
     <div class="flex items-center justify-between mb-6">
       <div class="flex items-center space-x-2">
         <img src="pic.jpg" class="rounded-full w-10 h-10" alt="Profile">
-        <span class="font-semibold text-lg">Shiney</span>
+        <span class="font-semibold text-lg text-blue-700">Shiney</span>
       </div>
-      <button id="sidebar-close" class="text-white hover:text-red-500 text-xl font-bold">×</button>
+      <button id="sidebar-close" class="text-gray-600 hover:text-red-500 text-xl font-bold">×</button>
     </div>
-    <ul class="space-y-4 text-white text-base font-medium">
-      <li><a href="profile.html" class="hover:text-secondary-color"> Profile</a></li>
-      <li><a href="dashboard.html" class="hover:text-secondary-color"> Dashboard</a></li>
-      <li><a href="orders.html" class="hover:text-secondary-color"> My Orders</a></li>
-      <li><a href="bookings.html" class="hover:text-secondary-color"> Bookings</a></li>
-      <li><a href="services.html" class="hover:text-secondary-color"> Services</a></li>
-      <li><a href="notification.html" class="hover:text-secondary-color">Notifications</a></li>
-      <li><a href="settings.html" class="hover:text-secondary-color"> Settings</a></li>
-      <li><a href="help.html" class="hover:text-secondary-color"> Help & Support</a></li>
-      <li><a href="logout.html" class="hover:text-secondary-color"> Logout</a></li>
+    <ul class="space-y-4 text-gray-800 text-base font-medium">
+      <li><a href="profile.html" class="hover:text-blue-600"> Profile</a></li>
+      <li><a href="dashboard.html" class="hover:text-blue-600"> Dashboard</a></li>
+      <li><a href="orders.html" class="hover:text-blue-600"> My Orders</a></li>
+      <li><a href="bookings.html" class="hover:text-blue-600"> Bookings</a></li>
+      <li><a href="services.html" class="hover:text-blue-600"> Services</a></li>
+      <li><a href="notification.html" class="hover:text-blue-600">Notifications</a></li>
+      <li><a href="settings.html" class="hover:text-blue-600"> Settings</a></li>
+      <li><a href="help.html" class="hover:text-blue-600"> Help & Support</a></li>
+      <li><a href="logout.html" class="hover:text-blue-600"> Logout</a></li>
     </ul>
   </div>
 
@@ -65,39 +61,39 @@
     <div class="container mx-auto flex justify-between items-center p-4">
       <!-- Profile Sidebar Toggle -->
       <div id="sidebar-toggle" class="flex items-center space-x-2 cursor-pointer">
-        <img src="pic.jpg" alt="Profile" class="w-10 h-10 rounded-full border-2 border-secondary-color hover:scale-105 transition-transform duration-200">
-        <span class="text-primary-color font-semibold">Shiney</span>
+        <img src="pic.jpg" alt="Profile" class="w-10 h-10 rounded-full border-2 border-blue-600 hover:scale-105 transition-transform duration-200">
+        <span class="text-blue-700 font-semibold">Shiney</span>
       </div>
 
       <!-- Title -->
-      <h1 class="text-xl font-bold text-primary-color">All Services at One Place</h1>
+      <h1 class="text-xl font-bold text-blue-600">All Services at One Place</h1>
 
-      <!-- Menu Toggle -->
+      <!-- Menu Toggle (for Mobile) -->
       <button id="menu-toggle" class="md:hidden focus:outline-none">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
-
-      <!-- Navigation Menu -->
-      <nav id="menu" class="hidden md:flex md:space-x-4 absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent mt-2 md:mt-0 shadow-md md:shadow-none z-40 flex-col md:flex-row">
-        <a href="index.html" class="block px-4 py-2 text-sm hover:text-primary-color">Home</a>
-        <a href="services.html" class="block px-4 py-2 text-sm hover:text-primary-color">Services</a>
-        <a href="about.html" class="block px-4 py-2 text-sm hover:text-primary-color">About</a>
-        <a href="login.html" class="block px-4 py-2 text-sm hover:text-primary-color">Login</a>
-        <a href="register.html" class="block px-4 py-2 text-sm hover:text-primary-color">Register</a>
-      </nav>
     </div>
   </header>
 
+  <!-- Mobile Menu -->
+  <nav id="menu" class="hidden md:flex md:space-x-4 absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent mt-2 md:mt-0 shadow-md md:shadow-none z-40 flex-col md:flex-row">
+    <a href="index.html" class="block px-4 py-2 text-sm hover:text-blue-600">Home</a>
+    <a href="services.html" class="block px-4 py-2 text-sm hover:text-blue-600">Services</a>
+    <a href="about.html" class="block px-4 py-2 text-sm hover:text-blue-600">About</a>
+    <a href="login.html" class="block px-4 py-2 text-sm hover:text-blue-600">Login</a>
+    <a href="register.html" class="block px-4 py-2 text-sm hover:text-blue-600">Register</a>
+  </nav>
+
   <!-- Hero Section -->
-  <section class="bg-primary-color py-12 text-center fade-in">
+  <section class="bg-blue-100 py-12 text-center fade-in">
     <div class="container mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">All Services at One Place</h2>
-      <p class="text-lg text-white max-w-xl mx-auto">Your one-stop solution for Household, Professional, and Daily Needs – anytime, anywhere.</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">All Services at One Place</h2>
+      <p class="text-lg text-gray-700 max-w-xl mx-auto">Your one-stop solution for Household, Professional, and Daily Needs – anytime, anywhere.</p>
       <div class="mt-6 space-x-4">
-        <a href="order.html" class="bg-secondary-color text-white px-4 py-2 rounded-lg hover:bg-hover-color transition duration-200 transform hover:scale-105">Book a Service</a>
-        <a href="provider.html" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-400 transition duration-200 transform hover:scale-105">Join as Provider</a>
+        <a href="order.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Book a Service</a>
+        <a href="provider.html" class="bg-gray-200 text-blue-800 px-4 py-2 rounded-lg hover:bg-gray-300">Join as Provider</a>
       </div>
     </div>
   </section>
@@ -105,24 +101,24 @@
   <!-- Services Overview -->
   <section class="py-12 fade-in">
     <div class="container mx-auto text-center">
-      <h3 class="text-2xl font-semibold mb-6 text-primary-color">Explore Service Categories</h3>
+      <h3 class="text-2xl font-semibold mb-6">Explore Service Categories</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300">
-          <h4 class="text-lg font-bold text-primary-color mb-2">Household Services</h4>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h4 class="text-lg font-bold text-blue-700 mb-2">Household Services</h4>
           <a href="services.html">
             <img src="ele.jpeg" alt="Household Services" class="w-96 h-55 object-cover mx-auto mb-6 hover:opacity-90 transition duration-200">
           </a>
           <p class="text-sm">Electrician, Plumber, Carpenter, Painter, Mechanic</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300">
-          <h4 class="text-lg font-bold text-secondary-color mb-2">Professional Services</h4>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h4 class="text-lg font-bold text-green-700 mb-2">Professional Services</h4>
           <a href="services.html">
             <img src="doctor.png" alt="Professional Services" class="w-96 h-55 object-cover mx-auto mb-6 hover:opacity-90 transition duration-200">
           </a>
           <p class="text-sm">Doctor & Legal Consultations, Travels, Loans, Education</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300">
-          <h4 class="text-lg font-bold text-accent-color mb-2">Daily Needs</h4>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h4 class="text-lg font-bold text-yellow-700 mb-2">Daily Needs</h4>
           <a href="services.html">
             <img src="fruits.jpeg" alt="Daily Needs" class="w-96 h-55 object-cover mx-auto mb-6 hover:opacity-90 transition duration-200">
           </a>
@@ -136,6 +132,16 @@
   <footer class="bg-white border-t py-6 text-center text-sm text-gray-600">
     <p>© 2025 All Services at One Place. All rights reserved.</p>
     <div class="mt-2 space-x-3">
-      <a href="about.html" class="hover:text-primary-color">About</a>
-      <a href="contact.html" class="hover:text-primary-color">Contact</a>
-      <a href="terms.html" class="hover:text-primary
+      <a href="about.html" class="hover:text-blue-600">About</a>
+      <a href="contact.html" class="hover:text-blue-600">Contact</a>
+      <a href="terms.html" class="hover:text-blue-600">Terms & Privacy</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sidebar = document.getElementById('left-sidebar');
+      const toggle = document.getElementById('sidebar-toggle');
+      const closeBtn = document.getElementById('sidebar-close');
+      const
