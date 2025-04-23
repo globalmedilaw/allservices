@@ -21,7 +21,7 @@
         <img src="pic.jpg" class="rounded-full w-10 h-10 ring-2 ring-teal-500 hover:scale-110 transition-transform duration-200" alt="Profile picture of Shiney" loading="lazy">
         <span class="font-semibold text-lg text-teal-800 font-poppins">Shiney</span>
       </div>
-      <button id="sidebar-close" class="text-teal-600 hover:text-red-500 text-xl font-bold bg-teal-100 hover:bg-red-100 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-200 hover:scale-125">×</button>
+      <button id="sidebar-close" class="text-teal-600 hover:text-red-500 text-xl font-bold bg-teal-100 hover:bg-red-100 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-200 hover:scale-125" aria-label="Close sidebar">×</button>
     </div>
     <ul class="space-y-2 text-gray-800 text-base md:text-lg font-semibold">
       <li data-aos="fade-right" data-aos-delay="50"><a href="profile.html" class="block py-2 px-4 hover:text-orange-600 hover:bg-teal-200 hover:border-l-4 hover:border-teal-600 transition-all duration-200 flex items-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg> Profile</a></li>
@@ -40,9 +40,8 @@
   <header class="bg-teal-900/90 backdrop-blur-md shadow-md sticky top-0 z-40 text-white">
     <div class="container mx-auto flex justify-between items-center p-4">
       <!-- Profile Sidebar Toggle -->
-      <div id="sidebar-toggle" class="flex items-center space-x-2 cursor-pointer" aria-label="Toggle sidebar">
+      <div id="sidebar-toggle" class="flex items-center cursor-pointer" aria-label="Toggle sidebar">
         <img src="pic.jpg" alt="Profile picture of Shiney" class="w-10 h-10 rounded-full border-2 border-orange-500 hover:scale-105 transition-transform duration-200" loading="lazy">
-        <span class="font-semibold font-poppins">Shiney</span>
       </div>
 
       <!-- Title -->
@@ -136,7 +135,6 @@
         sidebar.classList.toggle('-translate-x-full');
         overlay.classList.toggle('pointer-events-none');
         overlay.classList.toggle('hidden');
-        // console.log('Sidebar toggled');
       });
 
       // Close sidebar via close button
@@ -144,7 +142,6 @@
         sidebar.classList.add('-translate-x-full');
         overlay.classList.add('pointer-events-none');
         overlay.classList.add('hidden');
-        // console.log('Sidebar closed via button');
       });
 
       // Close sidebar via overlay click or touch
@@ -152,13 +149,11 @@
         sidebar.classList.add('-translate-x-full');
         overlay.classList.add('pointer-events-none');
         overlay.classList.add('hidden');
-        // console.log('Sidebar closed via overlay');
       });
       overlay.addEventListener('touchstart', function () {
         sidebar.classList.add('-translate-x-full');
         overlay.classList.add('pointer-events-none');
         overlay.classList.add('hidden');
-        // console.log('Sidebar closed via touch');
       });
 
       // Close sidebar when clicking menu links
@@ -167,7 +162,6 @@
           sidebar.classList.add('-translate-x-full');
           overlay.classList.add('pointer-events-none');
           overlay.classList.add('hidden');
-          // console.log('Sidebar closed via link');
         });
       });
 
@@ -175,7 +169,6 @@
       menuToggle.addEventListener('click', function () {
         menu.classList.toggle('hidden');
         menu.classList.toggle('translate-y-[-100%]');
-        // console.log('Menu toggled');
       });
 
       // Close mobile menu when clicking links
@@ -183,7 +176,6 @@
         link.addEventListener('click', () => {
           menu.classList.add('hidden');
           menu.classList.add('translate-y-[-100%]');
-          // console.log('Menu closed via link');
         });
       });
     });
