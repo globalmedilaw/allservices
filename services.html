@@ -2,168 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services - All Services at One Place</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-white text-gray-800">
+
   <!-- Header -->
-  <header class="bg-white shadow-md sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center p-4">
-      <h1 class="text-xl font-bold text-blue-600">All Services</h1>
-      <nav class="space-x-4">
-        <a href="index.html" class="text-sm hover:text-blue-600 transition-colors">Home</a>
-        <a href="services.html" class="text-sm text-blue-600 font-semibold">Services</a>
-        <a href="about.html" class="text-sm hover:text-blue-600 transition-colors">About</a>
-        <a href="login.html" class="text-sm hover:text-blue-600 transition-colors">Login</a>
-      </nav>
+  <header class="bg-blue-100 shadow-md py-6">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold text-blue-600">Our Services</h1>
     </div>
   </header>
 
-  <!-- Services -->
-  <main class="container mx-auto pt-20 pb-10 px-4">
-    <h2 class="text-3xl font-bold text-center mb-10 animate-fade-in">Service Categories</h2>
+  <!-- Services Section -->
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-    <!-- Household Services -->
-    <section id="household" class="mb-12">
-      <h3 class="text-2xl font-semibold text-blue-700 mb-4">🔧 Household Services</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- Each Card -->
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Electrician</h4>
-            <p class="text-sm text-gray-600">Wiring, fixing appliances, power issues</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
+        <!-- Service Card -->
+        <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-blue-600 mb-2">Electrician</h2>
+          <p class="text-gray-700">Get reliable electrical repair, installation, and maintenance services at your doorstep.</p>
         </div>
 
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Plumber</h4>
-            <p class="text-sm text-gray-600">Leaks, blockages, water system</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
+        <!-- Service Card -->
+        <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-blue-600 mb-2">Plumber</h2>
+          <p class="text-gray-700">Expert plumbing solutions for leaks, blockages, and new installations.</p>
         </div>
 
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Carpenter</h4>
-            <p class="text-sm text-gray-600">Woodwork, furniture fixes</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
+        <!-- Service Card -->
+        <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-blue-600 mb-2">Painter</h2>
+          <p class="text-gray-700">Transform your space with professional painting services for interiors and exteriors.</p>
         </div>
 
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Painter</h4>
-            <p class="text-sm text-gray-600">Interior & exterior painting</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
+        <!-- More Services as needed -->
+        <!-- Example:
+        <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-blue-600 mb-2">AC Repair</h2>
+          <p class="text-gray-700">Get your air conditioner serviced, repaired, or installed by certified technicians.</p>
         </div>
+        -->
 
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Mechanic</h4>
-            <p class="text-sm text-gray-600">Vehicle breakdown & repairs</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
-
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Petrol & Diesel Delivery</h4>
-            <p class="text-sm text-gray-600">Fuel delivery in emergencies</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Request Now →</a>
-        </div>
-
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Catering Services</h4>
-            <p class="text-sm text-gray-600">Event and daily meal catering</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
       </div>
-    </section>
-
-    <!-- Professional Services -->
-    <section id="professional" class="mb-12">
-      <h3 class="text-2xl font-semibold text-green-700 mb-4">👨‍⚕️ Professional Services</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Doctor Consultation</h4>
-            <p class="text-sm text-gray-600">Online health advice & second opinion</p>
-          </a>
-          <a href="consultancy.html" class="text-green-600 text-sm mt-2 inline-block">Consult Now →</a>
-        </div>
-
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Legal Advice</h4>
-            <p class="text-sm text-gray-600">Legal queries, document help, case guidance</p>
-          </a>
-          <a href="consultancy.html" class="text-green-600 text-sm mt-2 inline-block">Get Advice →</a>
-        </div>
-
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Education Consultancy</h4>
-            <p class="text-sm text-gray-600">Career guidance, admissions, scholarships</p>
-          </a>
-          <a href="consultancy.html" class="text-green-600 text-sm mt-2 inline-block">Explore →</a>
-        </div>
-
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Travel Booking</h4>
-            <p class="text-sm text-gray-600">Local, domestic, international trips</p>
-          </a>
-          <a href="order.html" class="text-green-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
-
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Loan Services</h4>
-            <p class="text-sm text-gray-600">Personal, home, education loans</p>
-          </a>
-          <a href="order.html" class="text-green-600 text-sm mt-2 inline-block">Apply Now →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Daily Needs -->
-    <section id="daily" class="mb-12">
-      <h3 class="text-2xl font-semibold text-yellow-700 mb-4">🛒 Daily Needs</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Organic Vegetables & Fruits</h4>
-            <p class="text-sm text-gray-600">Fresh home delivery</p>
-          </a>
-          <a href="order.html" class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</a>
-        </div>
-
-        <div class="bg-white p-4 shadow rounded-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Fresh Dairy Milk</h4>
-            <p class="text-sm text-gray-600">Fresh home delivery</p>
-          </a>
-          <a href="order.html" class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</a>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-white border-t py-6 text-center text-sm text-gray-600">
-    <p>© 2025 All Services at One Place. All rights reserved.</p>
-    <div class="mt-2 space-x-3">
-      <a href="about.html" class="hover:text-blue-600 transition-colors">About</a>
-      <a href="contact.html" class="hover:text-blue-600 transition-colors">Contact</a>
-      <a href="terms.html" class="hover:text-blue-600 transition-colors">Terms & Privacy</a>
+  <footer class="bg-blue-100 py-6 mt-12">
+    <div class="container mx-auto px-4 text-center text-blue-600 font-medium">
+      © 2025 All Services at One Place. All rights reserved.
     </div>
   </footer>
+
 </body>
 </html>
