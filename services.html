@@ -3,28 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Discover a wide range of household, professional, and daily needs services in one place. Book reliable services like electrician, doctor consultation, and grocery delivery today!" />
+  <meta name="keywords" content="services, household, professional, daily needs, electrician, plumber, doctor, grocery delivery, catering, consultancy" />
   <title>Services - All Services at One Place</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     /* Custom animation for fade-in */
     @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
+      0% { opacity: 0; }
+      100% { opacity: 1; }
     }
 
-    .fade-in {
-      animation: fadeIn 1.5s ease-in-out;
-    }
+    .fade-in { animation: fadeIn 1.5s ease-in-out; }
 
     /* Hover effect for cards */
     .service-card:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease-in-out;
+    }
+
+    /* Back to Top Button */
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #2563eb;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      display: none;
+      z-index: 1000;
+    }
+
+    #back-to-top:hover { background-color: #1e40af; }
+
+    /* Carousel */
+    .carousel { overflow: hidden; position: relative; }
+    .carousel-inner { display: flex; transition: transform 0.5s ease; }
+    .carousel-item { min-width: 100%; }
+    .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: white; padding: 10px; cursor: pointer; }
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+
+    /* Hamburger Menu */
+    #menu-toggle { display: none; }
+    @media (max-width: 640px) {
+      #menu-toggle:checked ~ .nav-menu { display: block; }
+      .nav-menu { display: none; }
     }
   </style>
 </head>
@@ -33,147 +60,419 @@
   <header class="bg-white shadow-md sticky top-0 z-50">
     <div class="container mx-auto flex justify-between items-center p-4">
       <h1 class="text-xl font-bold text-blue-600">All Services</h1>
-      <nav class="space-x-4">
+      <input type="checkbox" id="menu-toggle" class="hidden" />
+      <label for="menu-toggle" class="sm:hidden text-blue-600 text-2xl cursor-pointer">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav class="nav-menu space-x-4 sm:flex">
         <a href="index.html" class="text-sm hover:text-blue-600">Home</a>
-        <a href="services.html" class="text-sm hover:text-blue-600 font-semibold">Services</a>
+        <a href="services.html" class="text-sm hover:text-blue-600 font-semibold" aria-current="page">Services</a>
         <a href="about.html" class="text-sm hover:text-blue-600">About</a>
         <a href="login.html" class="text-sm hover:text-blue-600">Login</a>
       </nav>
     </div>
   </header>
 
-  <!-- Services -->
+  <!-- Main Content -->
   <main class="container mx-auto py-10 px-4">
-    <h2 class="text-3xl font-bold text-center mb-10">Service Categories</h2>
+    <!-- Featured Services Carousel -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-center mb-6">Featured Services</h2>
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item">
+            <a href="order.html" class="block bg-blue-100 p-6 rounded-lg text-center">
+              <i class="fas fa-bolt text-blue-600 text-4xl mb-2"></i>
+              <h3 class="font-bold text-xl">Electrician</h3>
+              <p class="text-sm text-gray-600">Fast and reliable electrical services</p>
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="consultancy.html" class="block bg-green-100 p-6 rounded-lg text-center">
+              <i class="fas fa-stethoscope text-green-600 text-4xl mb-2"></i>
+              <h3 class="font-bold text-xl">Doctor Consultation</h3>
+              <p class="text-sm text-gray-600">Online health advice anytime</p>
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="order.html" class="block bg-yellow-100 p-6 rounded-lg text-center">
+              <i class="fas fa-shopping-cart text-yellow-600 text-4xl mb-2"></i>
+              <h3 class="font-bold text-xl">Grocery Delivery</h3>
+              <p class="text-sm text-gray-600">Fresh groceries at your door</p>
+            </a>
+          </div>
+        </div>
+        <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="mb-10">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <input
+          type="text"
+          id="service-search"
+          placeholder="Search services..."
+          class="w-full sm:w-1/3 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+          aria-label="Search services"
+        />
+        <div class="flex gap-2">
+          <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" data-category="all">All</button>
+          <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" data-category="household">Household</button>
+          <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" data-category="professional">Professional</button>
+          <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" data-category="daily">Daily Needs</button>
+        </div>
+      </div>
+    </section>
 
     <!-- Household Services -->
-    <section id="household" class="mb-12">
+    <section id="household" class="mb-12 service-section" data-category="household">
       <h3 class="text-2xl font-semibold text-blue-700 mb-4">🔧 Household Services</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Electrician</h4>
-            <p class="text-sm text-gray-600">Wiring, fixing appliances, power issues</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Plumber</h4>
-            <p class="text-sm text-gray-600">Leaks, blockages, water system</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Carpenter</h4>
-            <p class="text-sm text-gray-600">Woodwork, furniture fixes</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Painter</h4>
-            <p class="text-sm text-gray-600">Interior & exterior painting</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Mechanic</h4>
-            <p class="text-sm text-gray-600">Vehicle breakdown & repairs</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Petrol & Diesel Delivery</h4>
-            <p class="text-sm text-gray-600">Fuel delivery in emergencies</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Request Now →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Catering Services</h4>
-            <p class="text-sm text-gray-600">Event and daily meal catering</p>
-          </a>
-          <a href="order.html" class="text-blue-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Electrician Service">
+          <div class="flex items-center">
+            <i class="fas fa-bolt text-blue-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Electrician</h4>
+              <p class="text-sm text-gray-600">Wiring, fixing appliances, power issues</p>
+            </div>
+          </div>
+          <span class="text-blue-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Plumber Service">
+          <div class="flex items-center">
+            <i class="fas fa-wrench text-blue-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Plumber</h4>
+              <p class="text-sm text-gray-600">Leaks, blockages, water system</p>
+            </div>
+          </div>
+          <span class="text-blue-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Carpenter Service">
+          <div class="flex items-center">
+            <i class="fas fa-hammer text-blue-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Carpenter</h4>
+              <p class="text-sm text-gray-600">Woodwork, furniture fixes</p>
+            </div>
+          </div>
+          <span class="text-blue-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Painter Service">
+          <div class="flex items-center">
+            <i class="fas fa-paint-roller text-blue-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Painter</h4>
+              <p class="text-sm text-gray-600">Interior & exterior painting</p>
+            </div>
+          </div>
+          <span class="text-blue-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Mechanic Service">
+          <div class="flex items-center">
+            <i class="fas fa-car text-blue-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Mechanic</h4>
+              <p class="text-sm text-gray-600">Vehicle breakdown & repairs</p>
+            </div>
+          </div>
+          <span class="text-blue-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Pest Control Service">
+          <div class="flex items-center">
+            <i class="fas fa-bug text-blue-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Pest Control</h4>
+              <p class="text-sm text-gray-600">Eliminate pests safely</p>
+            </div>
+          </div>
+          <span class="text-blue-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Home Cleaning Service">
+          <div class="flex items-center">
+            <i class="fas fa-broom text-blue-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Home Cleaning</h4>
+              <p class="text-sm text-gray-600">Deep cleaning for your home</p>
+            </div>
+          </div>
+          <span class="text-blue-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Gardener Service">
+          <div class="flex items-center">
+            <i class="fas fa-leaf text-blue-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Gardener</h4>
+              <p class="text-sm text-gray-600">Lawn mowing, landscaping, plant care</p>
+            </div>
+          </div>
+          <span class="text-blue-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Appliance Repair Service">
+          <div class="flex items-center">
+            <i class="fas fa-tools text-blue-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Appliance Repair</h4>
+              <p class="text-sm text-gray-600">Fixing washing machines, refrigerators</p>
+            </div>
+          </div>
+          <span class="text-blue-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
       </div>
     </section>
 
     <!-- Professional Services -->
-    <section id="professional" class="mb-12">
+    <section id="professional" class="mb-12 service-section" data-category="professional">
       <h3 class="text-2xl font-semibold text-green-700 mb-4">👨‍⚕️ Professional Services</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Doctor Consultation</h4>
-            <p class="text-sm text-gray-600">Online health advice & second opinion</p>
-          </a>
-          <a href="consultancy.html" class="text-green-600 text-sm mt-2 inline-block">Consult Now →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Legal Advice</h4>
-            <p class="text-sm text-gray-600">Legal queries, document help, case guidance</p>
-          </a>
-          <a href="consultancy.html" class="text-green-600 text-sm mt-2 inline-block">Get Advice →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Education Consultancy</h4>
-            <p class="text-sm text-gray-600">Career guidance, admissions, scholarships</p>
-          </a>
-          <a href="consultancy.html" class="text-green-600 text-sm mt-2 inline-block">Explore →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Travel Booking</h4>
-            <p class="text-sm text-gray-600">Local, domestic, international trips</p>
-          </a>
-          <a href="order.html" class="text-green-600 text-sm mt-2 inline-block">Book Now →</a>
-        </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Loan Services</h4>
-            <p class="text-sm text-gray-600">Personal, home, education loans</p>
-          </a>
-          <a href="order.html" class="text-green-600 text-sm mt-2 inline-block">Apply Now →</a>
-        </div>
+        <a href="consultancy.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Doctor Consultation">
+          <div class="flex items-center">
+            <i class="fas fa-stethoscope text-green-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Doctor Consultation</h4>
+              <p class="text-sm text-gray-600">Online health advice & second opinion</p>
+            </div>
+          </div>
+          <span class="text-green-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="consultancy.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Legal Advice">
+          <div class="flex items-center">
+            <i class="fas fa-balance-scale text-green-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Legal Advice</h4>
+              <p class="text-sm text-gray-600">Legal queries, document help, case guidance</p>
+            </div>
+          </div>
+          <span class="text-green-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="consultancy.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Education Consultancy">
+          <div class="flex items-center">
+            <i class="fas fa-graduation-cap text-green-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Education Consultancy</h4>
+              <p class="text-sm text-gray-600">Career guidance, admissions, scholarships</p>
+            </div>
+          </div>
+          <span class="text-green-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Travel Booking">
+          <div class="flex items-center">
+            <i class="fas fa-plane text-green-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Travel Booking</h4>
+              <p class="text-sm text-gray-600">Local, domestic, international trips</p>
+            </div>
+          </div>
+          <span class="text-green-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Loan Services">
+          <div class="flex items-center">
+            <i class="fas fa-money-check-alt text-green-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Loan Services</h4>
+              <p class="text-sm text-gray-600">Personal, home, education loans</p>
+            </div>
+          </div>
+          <span class="text-green-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="consultancy.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Accountant Service">
+          <div class="flex items-center">
+            <i class="fas fa-calculator text-green-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Accountant</h4>
+              <p class="text-sm text-gray-600">Tax filing, bookkeeping, financial planning</p>
+            </div>
+          </div>
+          <span class="text-green-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
+        <a href="consultancy.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Book Freelance Designer Service">
+          <div class="flex items-center">
+            <i class="fas fa-palette text-green-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Freelance Designer</h4>
+              <p class="text-sm text-gray-600">Graphic design, UI/UX, branding</p>
+            </div>
+          </div>
+          <span class="text-green-600 text-sm mt-2 inline-block">Book Now →</span>
+        </a>
       </div>
     </section>
 
     <!-- Daily Needs -->
-    <section id="daily" class="mb-12">
+    <section id="daily" class="mb-12 service-section" data-category="daily">
       <h3 class="text-2xl font-semibold text-yellow-700 mb-4">🛒 Daily Needs</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Organic Vegetables & Fruits</h4>
-            <p class="text-sm text-gray-600">Fresh home delivery</p>
-          </a>
-          <a href="order.html" class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Order Organic Vegetables & Fruits">
+          <div class="flex items-center">
+            <i class="fas fa-carrot text-yellow-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Organic Vegetables & Fruits</h4>
+              <p class="text-sm text-gray-600">Fresh home delivery</p>
+            </div>
+          </div>
+          <span class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Order Fresh Dairy Milk">
+          <div class="flex items-center">
+            <i class="fas fa-glass-whiskey text-yellow-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Fresh Dairy Milk</h4>
+              <p class="text-sm text-gray-600">Fresh home delivery</p>
+            </div>
+          </div>
+          <span class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Order Grocery Delivery">
+          <div class="flex items-center">
+            <i class="fas fa-shopping-cart text-yellow-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Grocery Delivery</h4>
+              <p class="text-sm text-gray-600">Essentials delivered to your door</p>
+            </div>
+          </div>
+          <span class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Order Pharmacy Delivery">
+          <div class="flex items-center">
+            <i class="fas fa-prescription-bottle text-yellow-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Pharmacy Delivery</h4>
+              <p class="text-sm text-gray-600">Medicines delivered fast</p>
+            </div>
+          </div>
+          <span class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Order Bakery Delivery">
+          <div class="flex items-center">
+            <i class="fas fa-bread-slice text-yellow-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Bakery Delivery</h4>
+              <p class="text-sm text-gray-600">Fresh bread, cakes, pastries</p>
+            </div>
+          </div>
+          <span class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</span>
+        </a>
+        <a href="order.html" class="block bg-white p-4 shadow rounded-lg service-card" aria-label="Order Laundry Services">
+          <div class="flex items-center">
+            <i class="fas fa-tshirt text-yellow-600 w-8 h-8 mr-2"></i>
+            <div>
+              <h4 class="font-bold text-lg">Laundry Services</h4>
+              <p class="text-sm text-gray-600">Wash, dry, fold, and delivery</p>
+            </div>
+          </div>
+          <span class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-center mb-6">What Our Customers Say</h2>
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item text-center p-6 bg-white shadow rounded-lg">
+            <p class="text-gray-600 italic">"The electrician was prompt and fixed our wiring issue in no time!"</p>
+            <p class="font-bold mt-2">Sarah M.</p>
+          </div>
+          <div class="carousel-item text-center p-6 bg-white shadow rounded-lg">
+            <p class="text-gray-600 italic">"Grocery delivery saved me so much time. Fresh and fast!"</p>
+            <p class="font-bold mt-2">John D.</p>
+          </div>
+          <div class="carousel-item text-center p-6 bg-white shadow rounded-lg">
+            <p class="text-gray-600 italic">"The doctor consultation was convenient and professional."</p>
+            <p class="font-bold mt-2">Emily R.</p>
+          </div>
         </div>
-        <div class="bg-white p-4 shadow rounded-lg service-card">
-          <a href="order.html">
-            <h4 class="font-bold text-lg">Fresh Dairy Milk</h4>
-            <p class="text-sm text-gray-600">Fresh home delivery</p>
-          </a>
-          <a href="order.html" class="text-yellow-600 text-sm mt-2 inline-block">Order Now →</a>
-        </div>
+        <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
       </div>
     </section>
   </main>
 
+  <!-- Back to Top Button -->
+  <button id="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
   <!-- Footer -->
-  <footer class="bg-white border-t py-6 text-center text-sm text-gray-600">
-    <p>© 2025 All Services at One Place. All rights reserved.</p>
-    <div class="mt-2 space-x-3">
-      <a href="about.html" class="hover:text-blue-600">About</a>
-      <a href="contact.html" class="hover:text-blue-600">Contact</a>
-      <a href="terms.html" class="hover:text-blue-600">Terms & Privacy</a>
+  <footer class="bg-white border-t py-6 text-gray-600">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- About -->
+        <div>
+          <h3 class="text-lg font-bold text-blue-600 mb-2">About Us</h3>
+          <p class="text-sm">All Services at One Place connects you with trusted professionals for household, professional, and daily needs.</p>
+        </div>
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-bold text-blue-600 mb-2">Quick Links</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="about.html" class="hover:text-blue-600">About</a></li>
+            <li><a href="contact.html" class="hover:text-blue-600">Contact</a></li>
+            <li><a href="terms.html" class="hover:text-blue-600">Terms & Privacy</a></li>
+          </ul>
+        </div>
+        <!-- Contact Form -->
+        <div>
+          <h3 class="text-lg font-bold text-blue-600 mb-2">Get in Touch</h3>
+          <form action="contact.html" method="POST" class="space-y-4">
+            <input type="text" name="name" placeholder="Your Name" class="w-full p-2 border rounded-lg" required aria-label="Your Name" />
+            <input type="email" name="email" placeholder="Your Email" class="w-full p-2 border rounded-lg" required aria-label="Your Email" />
+            <textarea name="message" placeholder="Your Message" class="w-full p-2 border rounded-lg" rows="4" required aria-label="Your Message"></textarea>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Send Message</button>
+          </form>
+        </div>
+      </div>
+      <p class="text-center text-sm mt-6">© 2025 All Services at One Place. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Search Functionality
+    const searchInput = document.getElementById('service-search');
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      document.querySelectorAll('.service-card').forEach(card => {
+        const title = card.querySelector('h4').textContent.toLowerCase();
+        card.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Filter Functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        document.querySelectorAll('.service-section').forEach(section => {
+          section.style.display = category === 'all' || section.dataset.category === category ? 'block' : 'none';
+        });
+      });
+    });
+
+    // Carousel Functionality
+    const carousels = document.querySelectorAll('.carousel');
+    carousels.forEach(carousel => {
+      const inner = carousel.querySelector('.carousel-inner');
+      const items = inner.querySelectorAll('.carousel-item');
+      let current = 0;
+
+      carousel.querySelector('.next').addEventListener('click', () => {
+        current = (current + 1) % items.length;
+        inner.style.transform = `translateX(-${current * 100}%)`;
+      });
+
+      carousel.querySelector('.prev').addEventListener('click', () => {
+        current = (current - 1 + items.length) % items.length;
+        inner.style.transform = `translateX(-${current * 100}%)`;
+      });
+    });
+
+    // Back to Top Button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
 </body>
 </html>
