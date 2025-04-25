@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Service Provider Dashboard for All Services at One Place. Manage service requests, update statuses, and verify locations." />
-  <meta name="keywords" content="service provider, dashboard, plumbing, electrician, bookings" />
-  <title>Service Provider Dashboard - All Services</title>
+  <meta name="description" content="Service Provider Dashboard for All Services at One Place. Manage service requests, update statuses, and verify locations with real-time efficiency." />
+  <meta name="keywords" content="service provider, dashboard, plumbing, electrician, bookings, real-time, secure" />
+  <title>Service Provider Dashboard - All Services at One Place</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
@@ -30,7 +30,7 @@
       50% { transform: scale(1.1); }
     }
 
-    .pulse { animation: pulse 2s ease-in-out 2; }
+    .pulse { animation: pulse 2s ease-in-out 1; }
 
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
@@ -47,12 +47,21 @@
 
     .zoom-in { animation: zoomIn 1.8s ease-in-out; }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
     }
 
-    .spin { animation: spin 2s linear; }
+    .shake { animation: shake 1.5s ease-in-out; }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(37, 99, 235, 0.3); }
+      50% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.5); }
+      100% { box-shadow: 0 0 5px rgba(37, 99, 235, 0.3); }
+    }
+
+    .action-btn:hover { animation: glow 1s ease-in-out infinite; }
 
     /* Hover and ripple effects */
     .action-btn:hover, .request-card:hover {
@@ -80,13 +89,16 @@
     /* Sidebar */
     .sidebar { transition: transform 0.3s ease-in-out; }
     .sidebar.hidden { transform: translateX(-100%); }
+
+    /* Bottom Navigation */
+    .bottom-nav { box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); }
   </style>
 </head>
 <body class="bg-gray-100 fade-in">
   <!-- Sidebar -->
   <div class="sidebar fixed top-0 left-0 h-full w-64 bg-white shadow-lg hidden md:block">
     <div class="p-4">
-      <h2 class="text-xl font-bold text-blue-700">Provider Menu</h2>
+      <h2 class="text-xl font-bold text-blue-700 flex items-center"><i class="fas fa-tools mr-2"></i> All Services</h2>
       <ul class="mt-4 space-y-2">
         <li><a href="service-provider.html" class="text-blue-600 hover:text-blue-800 flex items-center" aria-label="Service Dashboard"><i class="fas fa-tools mr-2"></i> Dashboard</a></li>
         <li><a href="profile.html" class="text-blue-600 hover:text-blue-800 flex items-center" aria-label="Provider Profile"><i class="fas fa-user mr-2"></i> Profile</a></li>
@@ -100,34 +112,36 @@
   <header class="bg-white shadow p-4 flex justify-between items-center">
     <div class="flex items-center">
       <button id="toggle-sidebar" class="text-blue-600 text-2xl md:hidden" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
-      <h1 class="text-xl font-bold text-blue-700 ml-4">Service Provider Dashboard</h1>
+      <h1 class="text-xl font-bold text-blue-700 ml-4 flex items-center"><i class="fas fa-tools mr-2"></i> All Services Dashboard</h1>
     </div>
-    <a href="index.html" class="text-sm text-blue-600 hover:underline" aria-label="Back to home">← Back to Home</a>
+    <a href="index.html" class="text-xs text-blue-600 hover:text-blue-800" aria-label="Back to home">← Back to Home</a>
   </header>
 
   <!-- Main Content -->
   <main class="p-6 max-w-5xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Assigned Requests -->
-      <section class="bg-white p-4 rounded shadow-lg request-card bg-gradient-to-r from-blue-50 to-teal-50">
-        <h2 class="text-lg font-bold text-blue-700 mb-3 flex items-center"><i class="fas fa-tools mr-2"></i> Assigned Service Requests</h2>
+      <section class="bg-white p-4 rounded shadow-lg request-card bg-gradient-to-r from-blue-50 to-teal-50 pulse">
+        <h2 class="text-xl font-bold text-blue-700 mb-3 flex items-center"><i class="fas fa-tools mr-2"></i> Assigned Service Requests <span class="ml-2 bg-red-500 text-white text-xs rounded-full px-2 py-1">2 New</span></h2>
         <ul class="space-y-3">
-          <li class="border p-3 rounded slide-in">
-            <p class="text-sm"><strong>Customer:</strong> Priya Sharma</p>
-            <p class="text-sm"><strong>Service:</strong> Plumbing</p>
-            <p class="text-sm"><strong>Address:</strong> Banjara Hills, Hyderabad</p>
+          <li class="border p-3 rounded slide-in" id="request-priya">
+            <p class="text-xs"><strong>Customer:</strong> Priya Sharma</p>
+            <p class="text-xs"><strong>Service:</strong> Plumbing</p>
+            <p class="text-xs"><strong>Address:</strong> Banjara Hills, Hyderabad</p>
+            <p class="text-xs"><strong>Status:</strong> <span id="status-priya">Pending</span></p>
             <div class="mt-2 space-x-2">
-              <button class="action-btn bg-green-500 text-white px-3 py-1 rounded pulse relative overflow-hidden" aria-label="Accept plumbing request for Priya Sharma"><i class="fas fa-check mr-1"></i> Accept</button>
-              <button class="action-btn bg-red-500 text-white px-3 py-1 rounded pulse relative overflow-hidden" aria-label="Reject plumbing request for Priya Sharma"><i class="fas fa-times mr-1"></i> Reject</button>
+              <button class="action-btn bg-emerald-600 text-white px-5 py-3 rounded pulse relative overflow-hidden" onclick="handleAccept('priya', 'Plumbing')" aria-label="Accept plumbing request for Priya Sharma"><i class="fas fa-check mr-1"></i> Accept</button>
+              <button class="action-btn bg-red-600 text-white px-5 py-3 rounded pulse relative overflow-hidden" onclick="handleReject('priya', 'Plumbing')" aria-label="Reject plumbing request for Priya Sharma"><i class="fas fa-times mr-1"></i> Reject</button>
             </div>
           </li>
-          <li class="border p-3 rounded slide-in">
-            <p class="text-sm"><strong>Customer:</strong> Suresh Kumar</p>
-            <p class="text-sm"><strong>Service:</strong> Electrician</p>
-            <p class="text-sm"><strong>Address:</strong> Kukatpally, Hyderabad</p>
+          <li class="border p-3 rounded slide-in" id="request-suresh">
+            <p class="text-xs"><strong>Customer:</strong> Suresh Kumar</p>
+            <p class="text-xs"><strong>Service:</strong> Electrician</p>
+            <p class="text-xs"><strong>Address:</strong> Kukatpally, Hyderabad</p>
+            <p class="text-xs"><strong>Status:</strong> <span id="status-suresh">Pending</span></p>
             <div class="mt-2 space-x-2">
-              <button class="action-btn bg-green-500 text-white px-3 py-1 rounded pulse relative overflow-hidden" aria-label="Accept electrician request for Suresh Kumar"><i class="fas fa-check mr-1"></i> Accept</button>
-              <button class="action-btn bg-red-500 text-white px-3 py-1 rounded pulse relative overflow-hidden" aria-label="Reject electrician request for Suresh Kumar"><i class="fas fa-times mr-1"></i> Reject</button>
+              <button class="action-btn bg-emerald-600 text-white px-5 py-3 rounded pulse relative overflow-hidden" onclick="handleAccept('suresh', 'Electrician')" aria-label="Accept electrician request for Suresh Kumar"><i class="fas fa-check mr-1"></i> Accept</button>
+              <button class="action-btn bg-red-600 text-white px-5 py-3 rounded pulse relative overflow-hidden" onclick="handleReject('suresh', 'Electrician')" aria-label="Reject electrician request for Suresh Kumar"><i class="fas fa-times mr-1"></i> Reject</button>
             </div>
           </li>
         </ul>
@@ -135,38 +149,45 @@
 
       <!-- QR Code & Map -->
       <section class="bg-white p-4 rounded shadow-lg request-card bg-gradient-to-r from-blue-50 to-teal-50 zoom-in">
-        <h2 class="text-lg font-bold text-blue-700 mb-3 flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Location & QR Verification</h2>
+        <h2 class="text-xl font-bold text-blue-700 mb-3 flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Location & QR Verification</h2>
         <div class="mb-4">
-          <p class="text-sm text-gray-700 mb-2">Customer Location (Map Placeholder)</p>
-          <div class="bg-gray-300 h-40 rounded flex items-center justify-center text-sm text-gray-600 zoom-in">Google Map View</div>
+          <p class="text-xs text-gray-700 mb-2">Customer Location (Map Placeholder)</p>
+          <div class="bg-gray-300 h-40 rounded flex items-center justify-center text-xs text-gray-600 shake">Google Map View</div>
         </div>
         <div>
-          <p class="text-sm text-gray-700 mb-2">Scan QR Code (Demo)</p>
-          <div class="bg-gray-300 h-32 w-32 rounded flex items-center justify-center text-sm text-gray-600 mx-auto spin">QR Code</div>
+          <p class="text-xs text-gray-700 mb-2">Scan QR Code (Demo)</p>
+          <div class="bg-gray-300 h-32 w-32 rounded flex items-center justify-center text-xs text-gray-600 mx-auto">QR Code</div>
         </div>
       </section>
 
       <!-- Status Update -->
       <section class="bg-white p-4 rounded shadow-lg md:col-span-2 request-card bg-gradient-to-r from-blue-50 to-teal-50">
-        <h2 class="text-lg font-bold text-blue-700 mb-3 flex items-center"><i class="fas fa-sync mr-2"></i> Update Service Status</h2>
-        <form id="status-form" class="flex flex-col sm:flex-row sm:items-center gap-4 bounce">
-          <select class="w-full sm:w-auto p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" aria-label="Select booking">
-            <option>Select Booking</option>
-            <option>Priya Sharma (Plumbing)</option>
-            <option>Suresh Kumar (Electrician)</option>
+        <h2 class="text-xl font-bold text-blue-700 mb-3 flex items-center"><i class="fas fa-sync mr-2"></i> Update Service Status</h2>
+        <form id="status-form" class="flex flex-col sm:flex-row sm:items-center gap-4 bounce" aria-live="polite">
+          <select name="booking" class="w-full sm:w-auto p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" aria-label="Select booking" required>
+            <option value="" disabled selected>Select Booking</option>
+            <option value="priya">Priya Sharma (Plumbing)</option>
+            <option value="suresh">Suresh Kumar (Electrician)</option>
           </select>
-          <select class="w-full sm:w-auto p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" aria-label="Select status">
-            <option>Status</option>
-            <option>Accepted</option>
-            <option>On the Way</option>
-            <option>Work Started</option>
-            <option>Completed</option>
+          <select name="status" class="w-full sm:w-auto p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" aria-label="Select status" required>
+            <option value="" disabled selected>Status</option>
+            <option value="Accepted">Accepted</option>
+            <option value="On the Way">On the Way</option>
+            <option value="Work Started">Work Started</option>
+            <option value="Completed">Completed</option>
           </select>
-          <button class="action-btn bg-blue-600 text-white px-4 py-2 rounded pulse relative overflow-hidden" aria-label="Update service status"><i class="fas fa-check-circle mr-1"></i> Update</button>
+          <button type="submit" class="action-btn bg-blue-600 text-white px-5 py-3 rounded pulse relative overflow-hidden" aria-label="Update service status"><i class="fas fa-check-circle mr-1"></i> Update</button>
         </form>
       </section>
     </div>
   </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav fixed bottom-0 left-0 right-0 bg-white p-4 flex justify-around items-center md:hidden">
+    <a href="service-provider.html" class="text-blue-600 hover:text-blue-800 flex flex-col items-center" aria-label="Dashboard"><i class="fas fa-tools text-xl"></i><span class="text-xs">Dashboard</span></a>
+    <a href="profile.html" class="text-blue-600 hover:text-blue-800 flex flex-col items-center" aria-label="Profile"><i class="fas fa-user text-xl"></i><span class="text-xs">Profile</span></a>
+    <a href="earnings.html" class="text-blue-600 hover:text-blue-800 flex flex-col items-center" aria-label="Earnings"><i class="fas fa-wallet text-xl"></i><span class="text-xs">Earnings</span></a>
+  </nav>
 
   <!-- Footer -->
   <footer class="bg-white border-t py-6 text-gray-600">
@@ -174,22 +195,22 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
           <h3 class="text-lg font-bold text-blue-700 mb-2">About Us</h3>
-          <p class="text-sm">All Services at One Place connects providers with customers for household and professional services.</p>
+          <p class="text-xs">All Services at One Place connects providers with customers for household and professional services.</p>
         </div>
         <div>
           <h3 class="text-lg font-bold text-blue-700 mb-2">Quick Links</h3>
-          <ul class="space-y-2 text-sm">
+          <ul class="space-y-2 text-xs">
             <li><a href="support.html" class="hover:text-blue-800">Support</a></li>
             <li><a href="terms.html" class="hover:text-blue-800">Terms & Privacy</a></li>
           </ul>
         </div>
         <div>
           <h3 class="text-lg font-bold text-blue-700 mb-2">Contact Support</h3>
-          <p class="text-sm">Email: support@allservices.com</p>
-          <p class="text-sm">Phone: +91 123-456-7890</p>
+          <p class="text-xs">Email: support@allservices.com</p>
+          <p class="text-xs">Phone: +91 123-456-7890</p>
         </div>
       </div>
-      <p class="text-center text-sm mt-6">© 2025 All Services at One Place. All rights reserved.</p>
+      <p class="text-center text-xs mt-6">© 2025 All Services at One Place. All rights reserved.</p>
     </div>
   </footer>
 
@@ -201,10 +222,26 @@
       sidebar.classList.toggle('hidden');
     });
 
-    // Form Submission Feedback
+    // Handle Accept/Reject
+    function handleAccept(id, service) {
+      document.getElementById(`status-${id}`).textContent = 'Accepted';
+      alert(`Accepted ${service} request`);
+      // TODO: Send to backend (e.g., POST to /api/accept)
+    }
+
+    function handleReject(id, service) {
+      document.getElementById(`status-${id}`).textContent = 'Rejected';
+      alert(`Rejected ${service} request`);
+      // TODO: Send to backend (e.g., POST to /api/reject)
+    }
+
+    // Form Submission
     document.getElementById('status-form').addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('Status updated successfully!');
+      const booking = e.target.booking.value;
+      const status = e.target.status.value;
+      document.getElementById(`status-${booking}`).textContent = status;
+      alert(`Status updated to ${status} for ${booking === 'priya' ? 'Priya Sharma (Plumbing)' : 'Suresh Kumar (Electrician)'}`);
       // TODO: Send to backend (e.g., POST to /api/status)
     });
   </script>
