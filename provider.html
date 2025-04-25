@@ -1,74 +1,212 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Service Provider Dashboard for All Services at One Place. Manage service requests, update statuses, and verify locations." />
+  <meta name="keywords" content="service provider, dashboard, plumbing, electrician, bookings" />
   <title>Service Provider Dashboard - All Services</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Custom animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .fade-in { animation: fadeIn 1.5s ease-in-out; }
+
+    @keyframes slideIn {
+      0% { transform: translateX(-20px) rotate(-5deg); opacity: 0; }
+      100% { transform: translateX(0) rotate(0); opacity: 1; }
+    }
+
+    .slide-in { animation: slideIn 0.8s ease-out forwards; }
+    .slide-in:nth-child(2) { animation-delay: 0.2s; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .pulse { animation: pulse 2s ease-in-out 2; }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    .bounce { animation: bounce 1s ease-in-out; }
+
+    @keyframes zoomIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .zoom-in { animation: zoomIn 1.8s ease-in-out; }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .spin { animation: spin 2s linear; }
+
+    /* Hover and ripple effects */
+    .action-btn:hover, .request-card:hover {
+      transform: scale(1.05);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .action-btn:active::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: ripple 0.6s linear;
+    }
+
+    @keyframes ripple {
+      to { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+    }
+
+    /* Sidebar */
+    .sidebar { transition: transform 0.3s ease-in-out; }
+    .sidebar.hidden { transform: translateX(-100%); }
+  </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 fade-in">
+  <!-- Sidebar -->
+  <div class="sidebar fixed top-0 left-0 h-full w-64 bg-white shadow-lg hidden md:block">
+    <div class="p-4">
+      <h2 class="text-xl font-bold text-blue-700">Provider Menu</h2>
+      <ul class="mt-4 space-y-2">
+        <li><a href="service-provider.html" class="text-blue-600 hover:text-blue-800 flex items-center" aria-label="Service Dashboard"><i class="fas fa-tools mr-2"></i> Dashboard</a></li>
+        <li><a href="profile.html" class="text-blue-600 hover:text-blue-800 flex items-center" aria-label="Provider Profile"><i class="fas fa-user mr-2"></i> Profile</a></li>
+        <li><a href="earnings.html" class="text-blue-600 hover:text-blue-800 flex items-center" aria-label="Earnings"><i class="fas fa-wallet mr-2"></i> Earnings</a></li>
+        <li><a href="support.html" class="text-blue-600 hover:text-blue-800 flex items-center" aria-label="Support"><i class="fas fa-headset mr-2"></i> Support</a></li>
+      </ul>
+    </div>
+  </div>
+
   <!-- Header -->
   <header class="bg-white shadow p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold text-blue-700">Service Provider Dashboard</h1>
-    <a href="index.html" class="text-sm text-blue-600 hover:underline">← Back to Home</a>
-  </header>  <!-- Main Content -->  <main class="p-6 max-w-5xl mx-auto">
+    <div class="flex items-center">
+      <button id="toggle-sidebar" class="text-blue-600 text-2xl md:hidden" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
+      <h1 class="text-xl font-bold text-blue-700 ml-4">Service Provider Dashboard</h1>
+    </div>
+    <a href="index.html" class="text-sm text-blue-600 hover:underline" aria-label="Back to home">← Back to Home</a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6 max-w-5xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Assigned Requests -->
-      <section class="bg-white p-4 rounded shadow">
-        <h2 class="text-lg font-semibold text-blue-600 mb-3">Assigned Service Requests</h2>
+      <section class="bg-white p-4 rounded shadow-lg request-card bg-gradient-to-r from-blue-50 to-teal-50">
+        <h2 class="text-lg font-bold text-blue-700 mb-3 flex items-center"><i class="fas fa-tools mr-2"></i> Assigned Service Requests</h2>
         <ul class="space-y-3">
-          <li class="border p-3 rounded">
-            <p><strong>Customer:</strong> Priya Sharma</p>
-            <p><strong>Service:</strong> Plumbing</p>
-            <p><strong>Address:</strong> Banjara Hills, Hyderabad</p>
+          <li class="border p-3 rounded slide-in">
+            <p class="text-sm"><strong>Customer:</strong> Priya Sharma</p>
+            <p class="text-sm"><strong>Service:</strong> Plumbing</p>
+            <p class="text-sm"><strong>Address:</strong> Banjara Hills, Hyderabad</p>
             <div class="mt-2 space-x-2">
-              <button class="bg-green-500 text-white px-3 py-1 rounded">Accept</button>
-              <button class="bg-red-500 text-white px-3 py-1 rounded">Reject</button>
+              <button class="action-btn bg-green-500 text-white px-3 py-1 rounded pulse relative overflow-hidden" aria-label="Accept plumbing request for Priya Sharma"><i class="fas fa-check mr-1"></i> Accept</button>
+              <button class="action-btn bg-red-500 text-white px-3 py-1 rounded pulse relative overflow-hidden" aria-label="Reject plumbing request for Priya Sharma"><i class="fas fa-times mr-1"></i> Reject</button>
             </div>
           </li>
-          <li class="border p-3 rounded">
-            <p><strong>Customer:</strong> Suresh Kumar</p>
-            <p><strong>Service:</strong> Electrician</p>
-            <p><strong>Address:</strong> Kukatpally, Hyderabad</p>
+          <li class="border p-3 rounded slide-in">
+            <p class="text-sm"><strong>Customer:</strong> Suresh Kumar</p>
+            <p class="text-sm"><strong>Service:</strong> Electrician</p>
+            <p class="text-sm"><strong>Address:</strong> Kukatpally, Hyderabad</p>
             <div class="mt-2 space-x-2">
-              <button class="bg-green-500 text-white px-3 py-1 rounded">Accept</button>
-              <button class="bg-red-500 text-white px-3 py-1 rounded">Reject</button>
+              <button class="action-btn bg-green-500 text-white px-3 py-1 rounded pulse relative overflow-hidden" aria-label="Accept electrician request for Suresh Kumar"><i class="fas fa-check mr-1"></i> Accept</button>
+              <button class="action-btn bg-red-500 text-white px-3 py-1 rounded pulse relative overflow-hidden" aria-label="Reject electrician request for Suresh Kumar"><i class="fas fa-times mr-1"></i> Reject</button>
             </div>
           </li>
         </ul>
-      </section><!-- QR Code & Map -->
-  <section class="bg-white p-4 rounded shadow">
-    <h2 class="text-lg font-semibold text-blue-600 mb-3">Location & QR Verification</h2>
-    <div class="mb-4">
-      <p class="text-sm text-gray-700 mb-2">Customer Location (Map Placeholder)</p>
-      <div class="bg-gray-300 h-40 rounded flex items-center justify-center text-sm text-gray-600">Google Map View</div>
-    </div>
-    <div>
-      <p class="text-sm text-gray-700 mb-2">Scan QR Code (Demo)</p>
-      <div class="bg-gray-300 h-32 w-32 rounded flex items-center justify-center text-sm text-gray-600 mx-auto">QR Code</div>
-    </div>
-  </section>
+      </section>
 
-  <!-- Status Update -->
-  <section class="bg-white p-4 rounded shadow md:col-span-2">
-    <h2 class="text-lg font-semibold text-blue-600 mb-3">Update Service Status</h2>
-    <form class="flex flex-col sm:flex-row sm:items-center gap-4">
-      <select class="w-full sm:w-auto p-2 border rounded">
-        <option>Select Booking</option>
-        <option>Priya Sharma (Plumbing)</option>
-        <option>Suresh Kumar (Electrician)</option>
-      </select>
-      <select class="w-full sm:w-auto p-2 border rounded">
-        <option>Status</option>
-        <option>Accepted</option>
-        <option>On the Way</option>
-        <option>Work Started</option>
-        <option>Completed</option>
-      </select>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded">Update</button>
-    </form>
-  </section>
-</div>
+      <!-- QR Code & Map -->
+      <section class="bg-white p-4 rounded shadow-lg request-card bg-gradient-to-r from-blue-50 to-teal-50 zoom-in">
+        <h2 class="text-lg font-bold text-blue-700 mb-3 flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Location & QR Verification</h2>
+        <div class="mb-4">
+          <p class="text-sm text-gray-700 mb-2">Customer Location (Map Placeholder)</p>
+          <div class="bg-gray-300 h-40 rounded flex items-center justify-center text-sm text-gray-600 zoom-in">Google Map View</div>
+        </div>
+        <div>
+          <p class="text-sm text-gray-700 mb-2">Scan QR Code (Demo)</p>
+          <div class="bg-gray-300 h-32 w-32 rounded flex items-center justify-center text-sm text-gray-600 mx-auto spin">QR Code</div>
+        </div>
+      </section>
 
+      <!-- Status Update -->
+      <section class="bg-white p-4 rounded shadow-lg md:col-span-2 request-card bg-gradient-to-r from-blue-50 to-teal-50">
+        <h2 class="text-lg font-bold text-blue-700 mb-3 flex items-center"><i class="fas fa-sync mr-2"></i> Update Service Status</h2>
+        <form id="status-form" class="flex flex-col sm:flex-row sm:items-center gap-4 bounce">
+          <select class="w-full sm:w-auto p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" aria-label="Select booking">
+            <option>Select Booking</option>
+            <option>Priya Sharma (Plumbing)</option>
+            <option>Suresh Kumar (Electrician)</option>
+          </select>
+          <select class="w-full sm:w-auto p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" aria-label="Select status">
+            <option>Status</option>
+            <option>Accepted</option>
+            <option>On the Way</option>
+            <option>Work Started</option>
+            <option>Completed</option>
+          </select>
+          <button class="action-btn bg-blue-600 text-white px-4 py-2 rounded pulse relative overflow-hidden" aria-label="Update service status"><i class="fas fa-check-circle mr-1"></i> Update</button>
+        </form>
+      </section>
+    </div>
   </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t py-6 text-gray-600">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="text-lg font-bold text-blue-700 mb-2">About Us</h3>
+          <p class="text-sm">All Services at One Place connects providers with customers for household and professional services.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-blue-700 mb-2">Quick Links</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="support.html" class="hover:text-blue-800">Support</a></li>
+            <li><a href="terms.html" class="hover:text-blue-800">Terms & Privacy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-blue-700 mb-2">Contact Support</h3>
+          <p class="text-sm">Email: support@allservices.com</p>
+          <p class="text-sm">Phone: +91 123-456-7890</p>
+        </div>
+      </div>
+      <p class="text-center text-sm mt-6">© 2025 All Services at One Place. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Toggle Sidebar
+    const sidebar = document.querySelector('.sidebar');
+    document.getElementById('toggle-sidebar').addEventListener('click', () => {
+      sidebar.classList.toggle('hidden');
+    });
+
+    // Form Submission Feedback
+    document.getElementById('status-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Status updated successfully!');
+      // TODO: Send to backend (e.g., POST to /api/status)
+    });
+  </script>
 </body>
 </html>
